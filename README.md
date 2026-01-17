@@ -153,10 +153,12 @@ npm run build
 4. Push (`git push origin feature/amazing`)
 5. Open PR
 
-## Security
+## Security & Stability
 
 - **No Admin Keys** — Immutable contracts
-- **Burn-to-Mint** — Prevents inflation
+- **Bootstrap Vesting** — 10% immediate, 90% after first delivery
+- **Proof-of-Delivery** — Must deliver to unlock minting
+- **Collateral Staking** — Required for large volumes (>100k eJLE)
 - **Oracle Multisig** — 3/5 consensus required
 
 Found a vulnerability? → security@joule.bond

@@ -213,6 +213,76 @@ Price in USD = market rate (target anchor ~$0.10)
 
 **Anchor mechanism:** Since eJLE is redeemable for real energy/goods, price naturally gravitates toward average global energy cost (~$0.10/kWh).
 
+## Stability Mechanism
+
+To prevent token collapse from mass dumping, eJLE uses a **hybrid stability model**:
+
+### 1. Bootstrap Vesting
+
+Bootstrap tokens are released gradually, not all at once:
+
+```
+Tier 1 (30,000 eJLE):
+├── 10% immediately (3,000 eJLE) — to start
+└── 90% unlocked (27,000 eJLE) — after first client burn
+```
+
+| Tier | Immediate | After First Burn |
+|------|-----------|------------------|
+| Tier 1 | 3,000 eJLE | +27,000 eJLE |
+| Tier 2 | 5,000 eJLE | +45,000 eJLE |
+| Tier 3 | 10,000 eJLE | +90,000 eJLE |
+
+**Result:** Can't just dump bootstrap — must deliver value first.
+
+### 2. Proof-of-Delivery
+
+Minting capacity unlocks through actual delivery:
+
+```
+Client burns 5,000 eJLE for your service
+        ↓
+You deliver the service
+        ↓
+5,000 eJLE mint capacity unlocked
+        ↓
+Can mint 5,000 new eJLE
+```
+
+**No delivery = no new minting capacity.**
+
+### 3. Collateral Staking (for large volumes)
+
+Generators wanting to mint >100,000 eJLE must stake collateral:
+
+| Mint Volume | Collateral Requirement |
+|-------------|------------------------|
+| <100k eJLE | None (Proof-of-Delivery only) |
+| 100k-1M eJLE | 10% in ETH/MATIC/stablecoins |
+| >1M eJLE | 20% collateral + validator approval |
+
+**Collateral is returned** when tokens are burned by customers.
+
+### Why This Works
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  ANTI-DUMP MECHANICS                                        │
+│                                                             │
+│  ✗ Dump bootstrap immediately                               │
+│    → Only 10% available, 90% locked                        │
+│                                                             │
+│  ✗ Mint unlimited and dump                                  │
+│    → Need burn (delivery) to unlock minting                │
+│                                                             │
+│  ✗ Whale manipulation                                       │
+│    → Large volumes require collateral stake                │
+│                                                             │
+│  ✓ Active participants                                      │
+│    → Deliver → earn burns → unlock capacity → grow         │
+└─────────────────────────────────────────────────────────────┘
+```
+
 ## Individual Bootstrap Program
 
 **For individuals and sole proprietors only.**
