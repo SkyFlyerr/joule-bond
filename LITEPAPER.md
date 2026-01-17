@@ -38,16 +38,24 @@ This creates a paradigm shift:
 | Home Solar | 10 kW | ✓ |
 | **Human Labor** | 0.1-0.5 kW | ✓ |
 
-### Human Labor as Energy
+### Human & Organizational Capacity
 
-A human body converts food into approximately **75-100 watts** of continuous power. Mental and physical work can be measured in energy units:
+Any entity with measurable productive output can participate:
 
+| Entity Type | Examples |
+|-------------|----------|
+| **Individuals** | Freelancers, consultants, craftsmen |
+| **Companies** | Agencies, factories, service providers |
+| **Organizations** | Non-profits, cooperatives, DAOs |
+
+**Capacity measurement:**
 ```
-8 hours of consulting work ≈ 0.8 kWh
-8 hours of physical labor ≈ 2-4 kWh
+8 hours of consulting ≈ 0.8 kWh
+Factory daily output ≈ measured in production energy
+Software company ≈ dev hours converted to kWh
 ```
 
-**Any individual or business** can validate their productive capacity and participate in the eJLE economy.
+**Any individual, company, or organization** can validate their productive capacity and participate in the eJLE economy.
 
 ## Token Economics
 

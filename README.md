@@ -43,13 +43,13 @@ eJLE creates a **universal unit of account** for all forms of energy and work, e
 
 | Generator Type | Example | Can Mint |
 |---------------|---------|----------|
-| Nuclear Plant | 1,000 MW | ✓ |
-| Solar Farm | 50 MW | ✓ |
-| Wind Turbine | 5 MW | ✓ |
-| Home Solar | 10 kW | ✓ |
-| **Human Labor** | 0.1-0.5 kW | ✓ |
+| Power Plants | Nuclear, Hydro, Solar, Wind | ✓ |
+| Home Solar | Rooftop panels | ✓ |
+| **Individuals** | Freelancers, consultants | ✓ |
+| **Companies** | Agencies, factories | ✓ |
+| **Organizations** | Non-profits, DAOs | ✓ |
 
-**Anyone** with validated productive capacity can mint, sell, and accept eJLE.
+**Any entity** — individual, company, or organization — with validated productive capacity can mint, sell, and accept eJLE.
 
 ## How It Works
 
