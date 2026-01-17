@@ -13,6 +13,7 @@
 
 <p align="center">
   <a href="https://joule.bond">Website</a> •
+  <a href="./WHITEPAPER.md">Whitepaper</a> •
   <a href="./LITEPAPER.md">Litepaper</a> •
   <a href="#quick-start">Quick Start</a> •
   <a href="#contributing">Contributing</a>
