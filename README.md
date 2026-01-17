@@ -8,7 +8,7 @@
 <h1 align="center">⚡ Joule Bond</h1>
 
 <p align="center">
-  <strong>The Global Energy Standard. Not Crypto. Pure Energy.</strong>
+  <strong>The Universal Energy Standard. Not Crypto. Pure Energy.</strong>
 </p>
 
 <p align="center">
@@ -22,134 +22,151 @@
 
 ## What is Joule Bond?
 
-**Joule Bond (eJLE)** is a Real World Asset (RWA) token where each unit is hard-pegged to **1 kWh** of verified electricity generation from nuclear and hydroelectric power plants.
+**Joule Bond (eJLE)** is a Real World Asset (RWA) token where each unit is hard-pegged to **1 kWh** of verified energy generation — whether from a nuclear plant, a solar panel, or human labor.
 
 ```
 1 eJLE = 1 kWh = 1000 kJ = 3.6 MJ
 ```
 
-Unlike volatile cryptocurrencies, eJLE represents a **digital wrapper around real physical work** — measurable, auditable, and backed by institutional-grade energy infrastructure.
+eJLE creates a **universal unit of account** for all forms of energy and work, enabling a fully decentralized marketplace where anyone can mint, trade, and redeem tokens backed by their validated productive capacity.
+
+## The Big Idea
+
+> "Everything is energy. Money should reflect that."
+
+- Power plants sell electricity as tokens
+- Solar panels monetize their output directly
+- **Humans sell their labor measured in energy units**
+- All goods and services priced in kWh
+
+## Who Can Participate?
+
+| Generator Type | Example | Can Mint |
+|---------------|---------|----------|
+| Nuclear Plant | 1,000 MW | ✓ |
+| Solar Farm | 50 MW | ✓ |
+| Wind Turbine | 5 MW | ✓ |
+| Home Solar | 10 kW | ✓ |
+| **Human Labor** | 0.1-0.5 kW | ✓ |
+
+**Anyone** with validated productive capacity can mint, sell, and accept eJLE.
+
+## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    THE eJLE CYCLE                           │
+│                                                             │
+│   1. VALIDATE ──→ Prove your generation capacity            │
+│         ↓                                                   │
+│   2. MINT ──────→ Create eJLE (max 100 days of capacity)   │
+│         ↓                                                   │
+│   3. SELL ──────→ Trade on CEX/DEX or direct               │
+│         ↓                                                   │
+│   4. BURN ──────→ Accept eJLE for goods/services           │
+│         ↓                                                   │
+│   5. MINT AGAIN → Burning unlocks new minting capacity     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Example — Freelancer:**
+1. Validate: 8 kWh/day capacity (consulting)
+2. Mint: up to 800 eJLE (100 days × 8 kWh)
+3. Sell: list on exchange
+4. Client burns 80 eJLE → you deliver 10 hours of work
+5. 80 burned → can mint 80 more
 
 ## Key Features
 
 | Feature | Description |
 |---------|-------------|
-| ⚡ **Energy-Backed** | 1:1 peg to verified kWh generation |
-| 🔒 **Overcollateralized** | Generators can only mint 10% of validated capacity |
-| 🔍 **Transparent** | All minting requires oracle verification |
-| 🏭 **Real Utility** | Redeem tokens for actual energy at supplier marketplace |
-| 🛡️ **Privacy Options** | Pseudonymous by default, optional KYB verification |
-
-## How It Works
-
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   GENERATORS    │     │    TOKEN        │     │    HOLDERS      │
-│                 │     │                 │     │                 │
-│  Nuclear/Hydro  │────▶│  Mint eJLE     │────▶│  Trade/Hold     │
-│  Solar/Wind     │     │  (10% of cap)   │     │  or Redeem      │
-└─────────────────┘     └─────────────────┘     └────────┬────────┘
-        ▲                                                │
-        │               ┌─────────────────┐              │
-        │               │   SUPPLIERS     │              │
-        └───────────────│                 │◀─────────────┘
-          Revalidation  │  Burn Contract  │    Burn for
-                        │  Energy/Goods   │    Energy
-                        └─────────────────┘
-```
+| ⚡ **Energy-Backed** | 1:1 peg to verified kWh |
+| 🔄 **Burn-to-Mint** | Must burn to unlock new minting |
+| 🌍 **Universal** | Any generator type: plants, panels, humans |
+| 🛒 **Marketplace** | Decentralized economy in kWh |
+| 🔒 **Privacy** | Pseudonymous by default, optional KYB |
 
 ## Use Cases
 
-- **⚡ EV Charging** — Pay for charging in kWh, not fiat
-- **✈️ Aviation** — Smart contracts for JET A-1 fuel
-- **🚀 Space** — Settlement for high-energy propellants
-- **🏭 Industrial** — B2B cross-border energy trading
-- **💰 Store of Value** — Energy-backed reserve asset
+- **⚡ Energy** — Sell electricity, EV charging, peer-to-peer solar
+- **👤 Freelance** — Price your services in kWh
+- **🏭 Industrial** — B2B settlements, supply chain
+- **💰 Store of Value** — Energy-backed savings
+- **🌍 Global Trade** — Universal unit, no FX risk
 
 ## Tech Stack
 
-- **Blockchain**: Polygon (PoS/zkEVM)
-- **Token Standard**: ERC-20
-- **Frontend**: Next.js 14+, TypeScript, Tailwind CSS
-- **Web3**: Wagmi, Viem, RainbowKit
-- **Oracles**: Custom energy oracle network
+| Layer | Technology |
+|-------|------------|
+| **Blockchain** | Polygon (PoS/zkEVM) |
+| **Token** | ERC-20 |
+| **Frontend** | Next.js 14+, TypeScript, Tailwind |
+| **Web3** | Wagmi, Viem, RainbowKit |
+| **Oracles** | Custom validator network |
 
 ## Smart Contracts
 
 | Contract | Purpose |
 |----------|---------|
 | `eJouleBond.sol` | Core token (mint, burn, transfer) |
-| `GeneratorRegistry.sol` | Capacity validation & minting rights |
-| `SupplierBurn.sol` | Redemption & burn logic |
+| `GeneratorRegistry.sol` | Capacity validation |
+| `SupplierBurn.sol` | Redemption logic |
 | `ValidatorConsensus.sol` | Revalidation scheduling |
 | `KYBAttestation.sol` | Optional identity verification |
+| `Marketplace.sol` | Listings, orders, escrow |
 
 ## Quick Start
 
 ```bash
-# Clone the repository
+# Clone
 git clone https://github.com/SkyFlyerr/joule-bond.git
 cd joule-bond
 
-# Install dependencies
+# Install
 npm install
 
-# Run development server
+# Dev
 npm run dev
 
-# Build for production
+# Build
 npm run build
-```
-
-## Project Structure
-
-```
-joule-bond/
-├── contracts/          # Solidity smart contracts
-├── src/
-│   ├── app/           # Next.js pages
-│   ├── components/    # React components
-│   └── lib/           # Utilities & Web3 config
-├── LITEPAPER.md       # Technical documentation
-└── README.md          # This file
 ```
 
 ## Roadmap
 
 | Phase | Milestone | Status |
 |-------|-----------|--------|
-| Q1 2025 | MVP Launch, Testnet | 🔄 In Progress |
-| Q2 2025 | Oracle integration, First generator | ⏳ Planned |
-| Q3 2025 | Mainnet launch on Polygon | ⏳ Planned |
-| Q4 2025 | EV charging pilot, Supplier marketplace | ⏳ Planned |
-| 2026 | Aviation & Space partnerships | ⏳ Planned |
+| Q1 2025 | MVP, Testnet, Core contracts | 🔄 In Progress |
+| Q2 2025 | Oracle network, First generators | ⏳ Planned |
+| Q3 2025 | Mainnet, Marketplace beta | ⏳ Planned |
+| Q4 2025 | Mobile app, Onboarding tools | ⏳ Planned |
+| 2026 | Enterprise, Multi-chain | ⏳ Planned |
 
 ## Contributing
 
-We welcome contributions! Please read our contributing guidelines before submitting PRs.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork the repo
+2. Create feature branch (`git checkout -b feature/amazing`)
+3. Commit (`git commit -m 'Add amazing feature'`)
+4. Push (`git push origin feature/amazing`)
+5. Open PR
 
 ## Security
 
-- **No Admin Keys**: Contracts are immutable post-deployment
-- **Oracle Multisig**: Energy data requires 3/5 validator consensus
-- **No Hidden Minting**: Impossible without oracle confirmation
+- **No Admin Keys** — Immutable contracts
+- **Burn-to-Mint** — Prevents inflation
+- **Oracle Multisig** — 3/5 consensus required
 
-Found a vulnerability? Please report it responsibly to security@joule.bond
+Found a vulnerability? → security@joule.bond
 
 ## License
 
-This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.
+**Apache License 2.0** — see [LICENSE](LICENSE)
 
 ---
 
 <p align="center">
-  <strong>⚡ Joule Bond — Digital Energy for the Real World</strong>
+  <strong>⚡ Joule Bond — Energy is Money</strong>
 </p>
 
 <p align="center">
