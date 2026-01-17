@@ -61,7 +61,9 @@ Any entity with measurable productive output can participate:
 
 ### Energy Generator Efficiency
 
-**Delivery Efficiency** determines how much real energy a buyer receives per eJLE. It includes ALL costs:
+Each generator **sets their own terms** — how much real energy they deliver per eJLE. The protocol doesn't enforce rates.
+
+**Delivery Efficiency** is a simple metric generators can calculate:
 
 ```
 Delivery Efficiency = Physical KPD
@@ -70,33 +72,26 @@ Delivery Efficiency = Physical KPD
                     - Maintenance
                     - Fuel (if applicable)
                     - Grid fees
-                    - Other operating costs
 ```
 
-**Example calculation:**
-```
-Payment: 1,000 eJLE
-Physical KPD: 85%
-Operating costs: 35% of output
-─────────────────────────────
-Delivery Efficiency: 50%
-Real delivery: 500 kWh
-```
+**Example:** A hydro plant might offer:
+- 650 kWh per 1,000 eJLE (65% delivery efficiency)
+- Or 700 kWh per 1,000 eJLE (70%, competitive pricing)
 
-| Generator Type | Physical KPD | After Costs | 1,000 eJLE delivers |
-|----------------|--------------|-------------|---------------------|
-| Hydro (large) | 90% | 60-70% | 600-700 kWh |
-| Hydro (small) | 85% | 50-60% | 500-600 kWh |
-| Nuclear | 35% | 20-25% | 200-250 kWh |
-| Wind | 45% | 25-35% | 250-350 kWh |
-| Solar Farm | 22% | 15-18% | 150-180 kWh |
-| Home Solar | 20% | 12-15% | 120-150 kWh |
+**Typical market rates** (for reference, not protocol rules):
 
-**Competitive dynamics:**
-- Generators compete on delivery efficiency
-- Low-cost operators offer better ratios
-- Buyers choose best value
-- Market drives optimization
+| Generator Type | Typical Offer |
+|----------------|---------------|
+| Hydro (large) | 500-700 kWh per 1,000 eJLE |
+| Nuclear | 150-250 kWh per 1,000 eJLE |
+| Wind | 200-350 kWh per 1,000 eJLE |
+| Solar Farm | 100-180 kWh per 1,000 eJLE |
+
+**Market dynamics:**
+- Generators compete freely on terms
+- Buyers choose best offers
+- No protocol-imposed rates
+- Pure supply & demand
 
 ## Token Economics
 
