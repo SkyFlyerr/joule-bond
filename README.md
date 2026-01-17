@@ -81,11 +81,11 @@ eJLE creates a **universal unit of account** for all forms of energy and work, e
 
 | Feature | Description |
 |---------|-------------|
-| 💵 **Market-Driven** | 1 eJLE = 1 kWh, price via DEX |
-| ⚡ **Energy-Backed** | Real energy generation as collateral |
-| 🔄 **Burn-to-Mint** | Must burn to unlock new minting |
+| 💵 **100% Collateral** | Every eJLE backed by staked crypto |
+| ⚡ **Sponsored Entry** | Stakers enable newcomers to mint free |
+| 💰 **Staker Rewards** | 0.1% tx fees to staking pool |
 | 🌍 **Universal** | Any entity: plants, companies, individuals |
-| 🚀 **Bootstrap Tiers** | 30k-100k eJLE via BrightID verification |
+| 📋 **Waitlist** | BrightID verified → join queue → get sponsored |
 | 🛒 **Marketplace** | Decentralized economy in kWh |
 
 ## Use Cases
@@ -155,11 +155,11 @@ npm run build
 
 ## Security & Stability
 
+- **100% Collateral Backed** — Every eJLE backed by staked assets
+- **Sponsored Minting** — Stakers enable entry, earn 0.1% tx fees
 - **No Admin Keys** — Immutable contracts
-- **Bootstrap Vesting** — 10% immediate, 90% after first delivery
-- **Proof-of-Delivery** — Must deliver to unlock minting
-- **Collateral Staking** — Required for large volumes (>100k eJLE)
 - **Oracle Multisig** — 3/5 consensus required
+- **BrightID Anti-Sybil** — One person = one slot globally
 
 Found a vulnerability? → security@joule.bond
 

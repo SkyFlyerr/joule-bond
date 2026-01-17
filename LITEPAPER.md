@@ -213,140 +213,137 @@ Price in USD = market rate (target anchor ~$0.10)
 
 **Anchor mechanism:** Since eJLE is redeemable for real energy/goods, price naturally gravitates toward average global energy cost (~$0.10/kWh).
 
-## Stability Mechanism
+## Collateral & Staking Model
 
-To prevent token collapse from mass dumping, eJLE uses a **hybrid stability model**:
+eJLE is **100% collateral-backed**. Every token in circulation is backed by staked crypto assets.
 
-### 1. Bootstrap Vesting
-
-Bootstrap tokens are released gradually, not all at once:
-
-```
-Tier 1 (30,000 eJLE):
-├── 10% immediately (3,000 eJLE) — to start
-└── 90% unlocked (27,000 eJLE) — after first client burn
-```
-
-| Tier | Immediate | After First Burn |
-|------|-----------|------------------|
-| Tier 1 | 3,000 eJLE | +27,000 eJLE |
-| Tier 2 | 5,000 eJLE | +45,000 eJLE |
-| Tier 3 | 10,000 eJLE | +90,000 eJLE |
-
-**Result:** Can't just dump bootstrap — must deliver value first.
-
-### 2. Proof-of-Delivery
-
-Minting capacity unlocks through actual delivery:
-
-```
-Client burns 5,000 eJLE for your service
-        ↓
-You deliver the service
-        ↓
-5,000 eJLE mint capacity unlocked
-        ↓
-Can mint 5,000 new eJLE
-```
-
-**No delivery = no new minting capacity.**
-
-### 3. Collateral Staking (for large volumes)
-
-Generators wanting to mint >100,000 eJLE must stake collateral:
-
-| Mint Volume | Collateral Requirement |
-|-------------|------------------------|
-| <100k eJLE | None (Proof-of-Delivery only) |
-| 100k-1M eJLE | 10% in ETH/MATIC/stablecoins |
-| >1M eJLE | 20% collateral + validator approval |
-
-**Collateral is returned** when tokens are burned by customers.
-
-### Why This Works
+### How It Works
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  ANTI-DUMP MECHANICS                                        │
+│  SPONSORED MINTING MODEL                                    │
 │                                                             │
-│  ✗ Dump bootstrap immediately                               │
-│    → Only 10% available, 90% locked                        │
+│  STAKER (has capital):                                     │
+│  ├── Stakes ETH/MATIC/USDC as collateral                   │
+│  ├── Opens minting slots for newcomers                     │
+│  └── Earns 0.1% from all sponsored transactions            │
 │                                                             │
-│  ✗ Mint unlimited and dump                                  │
-│    → Need burn (delivery) to unlock minting                │
+│  NEWCOMER (from waitlist):                                 │
+│  ├── Completes BrightID verification                       │
+│  ├── Joins waitlist                                        │
+│  ├── Gets sponsored by a staker                            │
+│  └── Receives minting rights without own collateral        │
 │                                                             │
-│  ✗ Whale manipulation                                       │
-│    → Large volumes require collateral stake                │
-│                                                             │
-│  ✓ Active participants                                      │
-│    → Deliver → earn burns → unlock capacity → grow         │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Individual Bootstrap Program
+### Staking Mechanics
 
-**For individuals and sole proprietors only.**
+| Stake Amount | Opens Slots For | Collateral Ratio |
+|--------------|-----------------|------------------|
+| $1,000 | 10,000 eJLE | 100% |
+| $10,000 | 100,000 eJLE | 100% |
+| $100,000 | 1,000,000 eJLE | 100% |
 
-New participants can mint a base amount to enter the ecosystem through **tiered verification**:
+**Staker rewards:**
+- **0.1% transaction fee** on all eJLE transactions
+- Distributed proportionally to stake amount
+- Passive income from sponsored participants' activity
+
+### Transaction Fees
+
+```
+Every eJLE transaction:
+├── 0.1% fee deducted
+└── Distributed to staking pool
+
+Example:
+Transaction: 10,000 eJLE
+Fee: 10 eJLE (0.1%)
+Goes to: Staking Reward Pool
+```
+
+### Staker Returns (Example)
+
+```
+Total Staking Pool: $10,000,000 TVL
+Your Stake: $10,000 (0.1% of pool)
+
+Daily Network Volume: 10,000,000 eJLE
+Daily Fees: 10,000 eJLE (0.1%)
+Your Daily Reward: 10 eJLE (~$1)
+
+Monthly: ~300 eJLE (~$30)
+Yearly: ~3,650 eJLE (~$365)
+APY: ~3.65% (depends on network activity)
+```
+
+### Why This Works
+
+| Problem | Solution |
+|---------|----------|
+| Token dumping | 100% collateral backing |
+| Barrier to entry | Sponsors enable free entry |
+| Staker motivation | Transaction fee rewards |
+| Price stability | Real asset backing |
+
+## Waitlist & Sponsorship
+
+### For Newcomers (No Capital)
+
+```
+1. VERIFY → Complete BrightID verification
+       ↓
+2. JOIN WAITLIST → Enter queue for sponsorship
+       ↓
+3. GET SPONSORED → Staker allocates slot to you
+       ↓
+4. MINT & WORK → Start earning through delivery
+       ↓
+5. GROW → Your activity rewards your sponsor
+```
 
 ### Verification Tiers
 
-| Tier | Method | Bootstrap | USD Value |
-|------|--------|-----------|-----------|
-| **Tier 1** | BrightID (social graph) | 30,000 eJLE | $3,000 |
-| **Tier 2** | BrightID + Document | 50,000 eJLE | $5,000 |
-| **Tier 3** | BrightID + Biometric | 100,000 eJLE | $10,000 |
+| Tier | Method | Minting Slot | Priority |
+|------|--------|--------------|----------|
+| **Tier 1** | BrightID | 30,000 eJLE | Standard |
+| **Tier 2** | BrightID + Document | 50,000 eJLE | Higher |
+| **Tier 3** | BrightID + Biometric | 100,000 eJLE | Highest |
 
-### Tier Details
+Higher tiers = faster sponsorship (stakers prefer verified participants).
 
-**Tier 1 — BrightID (Recommended)**
-- Decentralized social graph verification
-- No documents, maximum privacy
-- Sufficient for most individual participants
-
-**Tier 2 — BrightID + Document**
-- Additional passport/ID verification (via Sumsub, Veriff, or similar)
-- Higher trust level, faster revalidation cycles
-- Required for some enterprise contracts
-
-**Tier 3 — BrightID + Biometric**
-- Iris or facial biometric (via Worldcoin, Humanode)
-- Maximum Sybil resistance
-- Premium verification badge, highest capacity limits
-
-### How Bootstrap Works
+### For Stakers (Have Capital)
 
 ```
-1. CHOOSE TIER → Select verification level
+1. STAKE → Deposit ETH/MATIC/USDC
        ↓
-2. COMPLETE VERIFICATION → BrightID + optional additions
+2. OPEN SLOTS → Your stake enables newcomer minting
        ↓
-3. RECEIVE BOOTSTRAP → 30,000 / 50,000 / 100,000 eJLE
+3. SPONSOR → Choose participants from waitlist (or auto-assign)
        ↓
-4. LIST SERVICES → Price your work in kWh
+4. EARN → Receive 0.1% of their transaction volume
        ↓
-5. EARN & BURN → Get paid, deliver services
-       ↓
-6. REVALIDATE → Prove actual capacity, unlock standard minting
+5. COMPOUND → Restake rewards for more slots
 ```
 
-### Identity Validation Requirements
+### Sponsor Selection
 
-To prevent fraud and Sybil attacks:
+Stakers can:
+- **Auto-assign**: Protocol assigns from waitlist by tier priority
+- **Manual select**: Choose specific participants (DAOs, teams, etc.)
+- **Criteria-based**: Set minimum tier, region, or verification level
+
+### Identity Validation
+
+To prevent Sybil attacks:
 
 | Requirement | Description |
 |-------------|-------------|
-| **No Duplicates** | One person = one account, globally enforced |
-| **Cross-Jurisdiction Check** | Verify person hasn't registered in another country |
-| **Decentralized Verification** | BrightID social graph as primary method |
-| **Pseudonymous Storage** | Identity verified but not stored on-chain |
-
-**Why BrightID as primary method:**
-- Fully decentralized (no single point of failure)
-- Privacy-preserving (no documents required for Tier 1)
-- Community-driven verification
-- Already integrated in major crypto projects (Gitcoin, 1Hive)
-- Open source and transparent
+| **No Duplicates** | One person = one waitlist slot, globally |
+| **Cross-Jurisdiction** | Verify not registered elsewhere |
+| **BrightID Primary** | Decentralized, privacy-preserving |
+| **Pseudonymous** | Identity verified but not stored on-chain |
 
 ## Privacy & Verification
 
