@@ -66,7 +66,7 @@ Each generator **sets their own terms** — how much real energy they deliver pe
 **Delivery Efficiency** is a simple metric generators can calculate:
 
 ```
-Delivery Efficiency = Physical KPD
+Delivery Efficiency = Physical Efficiency
                     - Personnel costs
                     - Equipment amortization
                     - Maintenance
@@ -135,17 +135,17 @@ Delivery Efficiency = Physical KPD
 5. 5,000 eJLE burned → can mint 5,000 more
 6. Cycle continues...
 
-**Example — Solar Farm (10 MW, KPD 20%):**
+**Example — Solar Farm (10 MW, 20% efficiency):**
 1. Validate capacity: 10 MW = 240,000 kWh/day potential
 2. Mint limit: 240,000 × 100 = **24,000,000 eJLE**
 3. Sell on DEX
-4. Buyer burns 10,000 eJLE → receive 2,000 kWh electricity (20% KPD)
+4. Buyer burns 10,000 eJLE → receive 2,000 kWh electricity (20% efficiency)
 5. Burned amount unlocks new minting
 
-**Example — Hydro Plant (50 MW, KPD 85%):**
+**Example — Hydro Plant (50 MW, 85% efficiency):**
 1. Validate capacity: 50 MW = 1,200,000 kWh/day
 2. Buyer burns 10,000 eJLE → receive **8,500 kWh** electricity
-3. Higher KPD = more attractive to buyers
+3. Higher efficiency = more attractive to buyers
 
 ### Supply Mechanics
 
