@@ -155,48 +155,80 @@ eJLE enables a **self-contained economy** where all goods and services are price
 | **Consumer** | Buy eJLE → Spend → Receive | Universal payment method |
 | **Holder** | Buy → Hold | Store of value (energy never loses utility) |
 
+## Price Peg
+
+eJLE is an **energy stablecoin** with a fixed peg:
+
+```
+1 eJLE = 1 kWh = $0.10 USD (fixed)
+```
+
+This creates a stable, predictable unit of account for the global energy economy.
+
 ## Individual Bootstrap Program
 
 **For individuals and sole proprietors only.**
 
-New participants can mint a base amount to enter the ecosystem without prior capacity validation:
+New participants can mint a base amount to enter the ecosystem through **tiered verification**:
 
-| Parameter | Value |
-|-----------|-------|
-| **Base Mint** | 10,000 eJLE (10 MWh) |
-| **USD Equivalent** | ~$1,000 (at $0.10/kWh) |
-| **Requirement** | Validated national ID (pseudonymous) |
-| **Limit** | One-time per person, globally |
+### Verification Tiers
 
-**How it works:**
+| Tier | Method | Bootstrap | USD Value |
+|------|--------|-----------|-----------|
+| **Tier 1** | BrightID (social graph) | 30,000 eJLE | $3,000 |
+| **Tier 2** | BrightID + Document | 50,000 eJLE | $5,000 |
+| **Tier 3** | BrightID + Biometric | 100,000 eJLE | $10,000 |
+
+### Tier Details
+
+**Tier 1 — BrightID (Recommended)**
+- Decentralized social graph verification
+- No documents, maximum privacy
+- Sufficient for most individual participants
+
+**Tier 2 — BrightID + Document**
+- Additional passport/ID verification (via Sumsub, Veriff, or similar)
+- Higher trust level, faster revalidation cycles
+- Required for some enterprise contracts
+
+**Tier 3 — BrightID + Biometric**
+- Iris or facial biometric (via Worldcoin, Humanode)
+- Maximum Sybil resistance
+- Premium verification badge, highest capacity limits
+
+### How Bootstrap Works
+
 ```
-1. VALIDATE IDENTITY → National ID verified (kept private)
+1. CHOOSE TIER → Select verification level
        ↓
-2. RECEIVE BASE MINT → 10,000 eJLE to start
+2. COMPLETE VERIFICATION → BrightID + optional additions
        ↓
-3. LIST SERVICES → Price your work in kWh
+3. RECEIVE BOOTSTRAP → 30,000 / 50,000 / 100,000 eJLE
        ↓
-4. EARN & BURN → Get paid, deliver services
+4. LIST SERVICES → Price your work in kWh
        ↓
-5. REVALIDATE → Prove actual capacity, unlock standard minting
+5. EARN & BURN → Get paid, deliver services
+       ↓
+6. REVALIDATE → Prove actual capacity, unlock standard minting
 ```
 
 ### Identity Validation Requirements
 
-To prevent fraud and Sybil attacks, identity validators must enforce:
+To prevent fraud and Sybil attacks:
 
 | Requirement | Description |
 |-------------|-------------|
-| **No Duplicates** | One national ID = one account, strictly enforced |
+| **No Duplicates** | One person = one account, globally enforced |
 | **Cross-Jurisdiction Check** | Verify person hasn't registered in another country |
-| **Liveness Verification** | Proof of life (biometric or video verification) |
-| **Pseudonymous Storage** | ID verified but not stored on-chain |
+| **Decentralized Verification** | BrightID social graph as primary method |
+| **Pseudonymous Storage** | Identity verified but not stored on-chain |
 
-**Validator responsibilities:**
-- Maintain global registry of verified identities (hashed)
-- Cross-reference across all participating jurisdictions
-- Flag suspicious patterns (same biometrics, linked addresses)
-- Regular audits for duplicate detection
+**Why BrightID as primary method:**
+- Fully decentralized (no single point of failure)
+- Privacy-preserving (no documents required for Tier 1)
+- Community-driven verification
+- Already integrated in major crypto projects (Gitcoin, 1Hive)
+- Open source and transparent
 
 ## Privacy & Verification
 
