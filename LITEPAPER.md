@@ -59,25 +59,44 @@ Any entity with measurable productive output can participate:
 
 **Any individual, company, or organization** can validate their productive capacity and participate in the eJLE economy.
 
-### Energy Generator Efficiency (KPD)
+### Energy Generator Efficiency
 
-Physical energy generators have efficiency ratings that affect real energy delivery:
+**Delivery Efficiency** determines how much real energy a buyer receives per eJLE. It includes ALL costs:
 
+```
+Delivery Efficiency = Physical KPD
+                    - Personnel costs
+                    - Equipment amortization
+                    - Maintenance
+                    - Fuel (if applicable)
+                    - Grid fees
+                    - Other operating costs
+```
+
+**Example calculation:**
 ```
 Payment: 1,000 eJLE
-Generator KPD: 50%
-Real delivery: 500 kWh electricity
+Physical KPD: 85%
+Operating costs: 35% of output
+─────────────────────────────
+Delivery Efficiency: 50%
+Real delivery: 500 kWh
 ```
 
-| Generator Type | Typical KPD | 1,000 eJLE delivers |
-|----------------|-------------|---------------------|
-| Nuclear | 33-37% | 330-370 kWh |
-| Hydro | 80-90% | 800-900 kWh |
-| Solar PV | 15-22% | 150-220 kWh |
-| Wind | 35-45% | 350-450 kWh |
-| Natural Gas | 40-60% | 400-600 kWh |
+| Generator Type | Physical KPD | After Costs | 1,000 eJLE delivers |
+|----------------|--------------|-------------|---------------------|
+| Hydro (large) | 90% | 60-70% | 600-700 kWh |
+| Hydro (small) | 85% | 50-60% | 500-600 kWh |
+| Nuclear | 35% | 20-25% | 200-250 kWh |
+| Wind | 45% | 25-35% | 250-350 kWh |
+| Solar Farm | 22% | 15-18% | 150-180 kWh |
+| Home Solar | 20% | 12-15% | 120-150 kWh |
 
-**This creates competition:** Buyers prefer high-efficiency generators for better energy/eJLE ratio.
+**Competitive dynamics:**
+- Generators compete on delivery efficiency
+- Low-cost operators offer better ratios
+- Buyers choose best value
+- Market drives optimization
 
 ## Token Economics
 
