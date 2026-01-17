@@ -70,12 +70,12 @@ eJLE creates a **universal unit of account** for all forms of energy and work, e
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Example — Freelancer:**
-1. Validate: 8 kWh/day capacity (consulting)
-2. Mint: up to 800 eJLE (100 days × 8 kWh)
-3. Sell: list on exchange
-4. Client burns 80 eJLE → you deliver 10 hours of work
-5. 80 burned → can mint 80 more
+**Example — Consultant ($100/hr):**
+1. Bootstrap: 30,000 eJLE via BrightID
+2. Price: 1,000 eJLE/hour
+3. Client burns 5,000 eJLE → deliver 5 hours
+4. Validate capacity: 8,000 eJLE/day
+5. Standard mint: up to 800,000 eJLE (100 days)
 
 ## Key Features
 

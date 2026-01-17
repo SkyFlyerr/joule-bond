@@ -48,14 +48,36 @@ Any entity with measurable productive output can participate:
 | **Companies** | Agencies, factories, service providers |
 | **Organizations** | Non-profits, cooperatives, DAOs |
 
-**Capacity measurement:**
-```
-8 hours of consulting ≈ 0.8 kWh
-Factory daily output ≈ measured in production energy
-Software company ≈ dev hours converted to kWh
-```
+**Pricing services in eJLE** (at ~$0.10/eJLE market rate):
+
+| Service | Hourly Rate | eJLE/hour |
+|---------|-------------|-----------|
+| Consultant | $100/hr | 1,000 eJLE |
+| Developer | $80/hr | 800 eJLE |
+| Designer | $50/hr | 500 eJLE |
+| Physical labor | $20/hr | 200 eJLE |
 
 **Any individual, company, or organization** can validate their productive capacity and participate in the eJLE economy.
+
+### Energy Generator Efficiency (KPD)
+
+Physical energy generators have efficiency ratings that affect real energy delivery:
+
+```
+Payment: 1,000 eJLE
+Generator KPD: 50%
+Real delivery: 500 kWh electricity
+```
+
+| Generator Type | Typical KPD | 1,000 eJLE delivers |
+|----------------|-------------|---------------------|
+| Nuclear | 33-37% | 330-370 kWh |
+| Hydro | 80-90% | 800-900 kWh |
+| Solar PV | 15-22% | 150-220 kWh |
+| Wind | 35-45% | 350-450 kWh |
+| Natural Gas | 40-60% | 400-600 kWh |
+
+**This creates competition:** Buyers prefer high-efficiency generators for better energy/eJLE ratio.
 
 ## Token Economics
 
@@ -91,20 +113,25 @@ Software company ≈ dev hours converted to kWh
 | **Burn-to-Mint** | Must burn tokens to unlock new minting capacity |
 | **Revalidation** | Capacity must be periodically revalidated (schedule set by validator consensus) |
 
-**Example — Individual Entrepreneur:**
-1. Validate capacity: 8 kWh/day (consulting services)
-2. Mint limit: 8 × 100 = **800 eJLE**
-3. Sell 800 eJLE on exchange
-4. Client burns 80 eJLE → receive 10 hours of consulting
-5. 80 eJLE burned → can mint 80 more eJLE
+**Example — Consultant ($100/hr):**
+1. Validate capacity: 8,000 eJLE/day (8 hrs × 1,000 eJLE/hr)
+2. Mint limit: 8,000 × 100 days = **800,000 eJLE**
+3. Sell on exchange or accept direct payments
+4. Client burns 5,000 eJLE → receive 5 hours of consulting
+5. 5,000 eJLE burned → can mint 5,000 more
 6. Cycle continues...
 
-**Example — Solar Panel Owner:**
-1. Validate capacity: 20 kWh/day
-2. Mint limit: 20 × 100 = **2,000 eJLE**
-3. Sell on DEX or to neighbors
-4. Buyer burns eJLE → receive electricity
+**Example — Solar Farm (10 MW, KPD 20%):**
+1. Validate capacity: 10 MW = 240,000 kWh/day potential
+2. Mint limit: 240,000 × 100 = **24,000,000 eJLE**
+3. Sell on DEX
+4. Buyer burns 10,000 eJLE → receive 2,000 kWh electricity (20% KPD)
 5. Burned amount unlocks new minting
+
+**Example — Hydro Plant (50 MW, KPD 85%):**
+1. Validate capacity: 50 MW = 1,200,000 kWh/day
+2. Buyer burns 10,000 eJLE → receive **8,500 kWh** electricity
+3. Higher KPD = more attractive to buyers
 
 ### Supply Mechanics
 
