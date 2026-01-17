@@ -1,4 +1,4 @@
-# Joule Bond (eJLE) — Litepaper v1.0
+# Joule Bond (eJLE) — Litepaper v1.1
 
 > **The Global Energy Standard. Not Crypto. Pure Energy.**
 
@@ -22,32 +22,113 @@ Joule Bond creates a **1:1 collateralized energy token** through a transparent o
 1 eJLE = 1 kWh = 1000 kJ = 3.6 MJ
 ```
 
-### How It Works
+## Token Economics
 
-1. **Energy Generation** — Partner power plants (nuclear/hydro) generate electricity
-2. **Oracle Verification** — On-chain oracles receive real-time generation data from SCADA systems
-3. **Token Minting** — eJLE tokens are minted only when energy generation is cryptographically verified
-4. **Burn-on-Consumption** — When energy is consumed (EV charging, industrial use), corresponding tokens are burned
+### Supply Side: Generators
 
-### No Hidden Minting
+Power plants (nuclear, hydro, solar, wind) can mint eJLE tokens based on their validated generation capacity:
 
-The smart contract explicitly prohibits minting without oracle confirmation. All generation data is publicly auditable.
+```
+Validated Capacity: 100 MW
+         ↓
+Mintable eJLE: up to 10% (10 MW equivalent)
+         ↓
+List on CEX/DEX
+```
+
+**Validation Process:**
+1. Generator submits capacity documentation
+2. Validator network verifies via SCADA/oracle data
+3. Minting rights granted (up to 10% of validated capacity)
+4. **Revalidation required** — schedule set by validator consensus
+
+**Why 10% cap?**
+- Ensures overcollateralization
+- Prevents supply flooding
+- Maintains energy backing integrity
+
+### Demand Side: Token Holders
+
+Holders can use eJLE in two ways:
+
+| Mode | Description |
+|------|-------------|
+| **Utility** | Redeem for real energy/goods at marketplace suppliers |
+| **Store of Value** | Hold as energy-backed stablecoin, liquidity reserve, profit cash-out |
+
+### Burn Mechanism
+
+Token redemption (burn) is validated on-chain:
+
+```
+Holder sends eJLE → Supplier's Burn Contract → Tokens destroyed
+                            ↓
+              Supplier delivers energy/goods
+```
+
+**Privacy Levels:**
+
+| Level | Public Data | Use Case |
+|-------|-------------|----------|
+| **Pseudonymous** (default) | Address + burn volume | Standard operation |
+| **Verified** | Address + volume + legal entity | Reputation building |
+| **ZK-Proof** | Only "burned >X" attestation | Maximum privacy |
+
+### Supplier Verification (Optional KYB)
+
+Suppliers can optionally verify their legal identity to build on-chain reputation:
+
+```
+┌─────────────────────────────────────────────────┐
+│  DEFAULT: Pseudonymous                          │
+│  Address 0xABC → burn volume visible            │
+│  Identity → not linked                          │
+└─────────────────────────────────────────────────┘
+                    ↓ optional
+┌─────────────────────────────────────────────────┐
+│  VERIFIED: Legal Entity                         │
+│  Address 0xABC → burn volume visible            │
+│  Identity → US:12-3456789 (country:taxID)       │
+│  Attestation → on-chain proof ✓                 │
+└─────────────────────────────────────────────────┘
+```
+
+**Identity Format:**
+```
+{ISO_COUNTRY}:{TAX_ID}
+US:12-3456789      # USA, EIN
+DE:DE123456789     # Germany, VAT
+GB:123456789       # UK, Company Number
+JP:1234567890123   # Japan, Corporate Number
+```
+
+**Verification Process:**
+1. Supplier submits country + tax ID + documentation
+2. Validator (or oracle) verifies off-chain
+3. On-chain attestation issued
+4. Public badge: "Verified Supplier ✓"
 
 ## Use Cases
 
 ### ⚡ Electric Transport
-Direct integration with EV charging stations. Pay for charging in kWh, not fiat. The token automatically burns upon energy delivery.
+Direct integration with EV charging stations. Pay for charging in kWh, not fiat. Tokens automatically burn upon energy delivery.
 
 ### ✈️ Aviation Fuel
-Smart contracts for JET A-1 fuel procurement. Airlines can hedge energy costs with a stable, energy-backed asset.
+Smart contracts for JET A-1 fuel procurement. Airlines hedge energy costs with a stable, energy-backed asset.
 
 ### 🚀 Space Industry
-Settlement layer for high-energy propellants (Naphthyl, Liquid Hydrogen). Space companies gain access to programmable energy contracts.
+Settlement layer for high-energy propellants (Naphthyl, Liquid Hydrogen). Space companies access programmable energy contracts.
 
 ### 🏭 Industrial Energy Trading
-B2B energy settlements without currency conversion risks. Cross-border energy transactions on Polygon L2.
+B2B energy settlements without currency conversion risks. Cross-border transactions on Polygon L2.
 
-## Token Economics
+### 💰 Store of Value
+Energy-backed reserve asset for:
+- Treasury diversification
+- Profit cash-out from volatile investments
+- Inflation hedge (energy has intrinsic value)
+
+## Technical Specifications
 
 | Parameter | Value |
 |-----------|-------|
@@ -55,40 +136,36 @@ B2B energy settlements without currency conversion risks. Cross-border energy tr
 | **Standard** | ERC-20 |
 | **Network** | Polygon (PoS/zkEVM) |
 | **Peg** | 1 eJLE = 1 kWh |
-| **Collateral** | 100% energy-backed |
-| **Supply** | Dynamic (mint on generation, burn on consumption) |
+| **Collateral** | 100% energy-backed (10:1 reserve ratio) |
+| **Supply** | Dynamic (mint on validation, burn on consumption) |
 
-### Price Stability Mechanism
+### Smart Contracts
 
-eJLE is not designed to appreciate in USD terms. Its value tracks the wholesale electricity price in the generation region. This makes it:
-
-- **Non-speculative** — No pump-and-dump dynamics
-- **Utility-focused** — Value derived from actual energy redemption
-- **Compliant** — Not a security under most jurisdictions
-
-## Technology Stack
-
-- **Blockchain**: Polygon (low fees, high throughput)
-- **Oracles**: Custom energy oracle network connected to power plant SCADA
-- **Smart Contracts**: Solidity (audited, open-source)
-- **Frontend**: Next.js, TypeScript, Wagmi, RainbowKit
+| Contract | Function |
+|----------|----------|
+| `eJouleBond.sol` | Core token (mint, burn, transfer) |
+| `GeneratorRegistry.sol` | Capacity validation & minting rights |
+| `SupplierBurn.sol` | Redemption & burn logic |
+| `ValidatorConsensus.sol` | Revalidation scheduling |
+| `KYBAttestation.sol` | Optional identity verification |
 
 ## Security & Compliance
 
-- **Apache-2.0 License** — Fully open-source codebase
-- **No Admin Keys** — Contract is immutable post-deployment
-- **Oracle Multisig** — Energy data requires 3/5 validator consensus
-- **Tier-1 Exchange Compatible** — Designed for Binance/OKX listing standards
+- **License**: Apache-2.0 (fully open-source)
+- **No Admin Keys**: Contracts are immutable post-deployment
+- **Oracle Multisig**: Energy data requires 3/5 validator consensus
+- **Tier-1 CEX Compatible**: Designed for Binance/OKX listing standards
+- **No Hidden Minting**: Impossible without oracle confirmation
 
 ## Roadmap
 
 | Phase | Milestone |
 |-------|-----------|
 | **Q1 2025** | MVP Launch, Testnet deployment |
-| **Q2 2025** | Oracle network integration, First power plant partnership |
+| **Q2 2025** | Oracle network integration, First generator partnership |
 | **Q3 2025** | Mainnet launch on Polygon |
-| **Q4 2025** | EV charging network pilot |
-| **2026** | Aviation & Space industry partnerships |
+| **Q4 2025** | EV charging network pilot, Supplier marketplace |
+| **2026** | Aviation & Space partnerships, Multi-chain expansion |
 
 ## Team
 
