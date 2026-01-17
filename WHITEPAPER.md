@@ -224,60 +224,199 @@ Fee: 10 eJLE (0.1%)
 
 ### 5.1 100% Collateral Backing
 
-Every eJLE in circulation is backed by staked crypto assets. This ensures protocol solvency and prevents token dumping.
+Every eJLE in circulation is backed by staked crypto assets. This ensures protocol solvency and prevents token dumping. The protocol accepts **yield-bearing collateral** to maximize staker returns.
 
-### 5.2 Sponsored Minting
+### 5.2 Yield-Bearing Collateral
+
+Stakers can deposit yield-bearing assets, earning underlying yield in addition to protocol rewards:
+
+**Accepted Collateral (Yield-Bearing — Preferred):**
+
+| Asset | Type | Underlying Yield |
+|-------|------|------------------|
+| stETH | Lido Staked ETH | ~3-4% APY |
+| rETH | Rocket Pool ETH | ~3-4% APY |
+| sDAI | Spark DAI | ~5-8% APY |
+| aUSDC | Aave USDC | ~2-5% APY |
+
+**Accepted Collateral (Non-Yield):**
+
+| Asset | Notes |
+|-------|-------|
+| ETH | Native, no yield |
+| MATIC | Native, no yield |
+| USDC/USDT | Stablecoins |
+
+New collateral types can be added via DAO governance vote.
+
+### 5.3 Liquid Staking: stJLE Token
+
+When users stake collateral, they receive **stJLE** — a liquid receipt token:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    stJLE TOKEN                                   │
+│                                                                  │
+│  DEPOSIT:                                                       │
+│  User deposits 10 stETH → receives stJLE tokens                 │
+│                                                                  │
+│  stJLE REPRESENTS:                                              │
+│  ├── Claim on underlying collateral                             │
+│  ├── Accumulated protocol fees                                  │
+│  ├── Governance voting power                                    │
+│  └── Sponsorship capacity (minting slots)                       │
+│                                                                  │
+│  stJLE IS FULLY LIQUID:                                         │
+│  ├── Tradeable on DEX                                           │
+│  ├── Usable as collateral in DeFi (Aave, Compound)              │
+│  ├── Can be transferred or sold anytime                         │
+│  └── New holder inherits all rights AND obligations             │
+│                                                                  │
+│  VALUE ACCRUAL:                                                 │
+│  stJLE/collateral ratio grows as fees accumulate                │
+│  Day 0: 1 stJLE = 1 stETH worth                                 │
+│  Day 365: 1 stJLE = 1.05+ stETH worth (fees accrued)            │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 5.4 Sponsored Minting
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  SPONSORED MINTING MODEL                                        │
 │                                                                  │
 │  STAKER (has capital):                                          │
-│  ├── Stakes ETH/MATIC/USDC as collateral                        │
-│  ├── Opens minting slots for newcomers                          │
-│  └── Earns share of 0.1% transaction fees                       │
+│  ├── Deposits yield-bearing collateral (stETH, rETH, etc.)      │
+│  ├── Receives stJLE tokens (liquid, tradeable)                  │
+│  ├── Opens minting slots for generators                         │
+│  ├── Sets sponsorship fee (market-driven)                       │
+│  └── Earns: underlying yield + protocol fees + sponsorship fees │
 │                                                                  │
-│  NEWCOMER (from waitlist):                                      │
-│  ├── Completes BrightID verification                            │
-│  ├── Joins waitlist                                             │
-│  ├── Gets sponsored by a staker                                 │
-│  └── Receives minting rights without own collateral             │
+│  GENERATOR (needs minting capacity):                            │
+│  ├── Completes identity verification (BrightID/KYB)             │
+│  ├── Finds sponsor on Sponsorship Marketplace                   │
+│  ├── Pays market-rate sponsorship fee                           │
+│  └── Receives minting rights backed by sponsor's collateral     │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### 5.3 Staking Mechanics
+### 5.5 Sponsorship Marketplace
 
-| Stake Amount | Opens Slots For | Collateral Ratio |
-|--------------|-----------------|------------------|
-| $1,000 | 10,000 eJLE | 100% |
-| $10,000 | 100,000 eJLE | 100% |
-| $100,000 | 1,000,000 eJLE | 100% |
-
-### 5.4 Staker Rewards
-
-Stakers earn from the 70% of transaction fees allocated to the staking pool:
+Sponsorship fees are **market-driven**, not fixed:
 
 ```
-Example:
-Total Staking Pool: $10,000,000 TVL
-Your Stake: $10,000 (0.1% of pool)
-
-Daily Network Volume: 10,000,000 eJLE
-Daily Fees: 10,000 eJLE (0.1%)
-Staker Pool Share: 7,000 eJLE (70%)
-Your Daily Reward: 7 eJLE (~$0.70)
-
-Monthly: ~210 eJLE (~$21)
-Yearly: ~2,555 eJLE (~$255)
-APY: ~2.55% (depends on network activity)
+┌─────────────────────────────────────────────────────────────────┐
+│            SPONSORSHIP MARKETPLACE                               │
+│                                                                  │
+│  STAKER LISTING:                                                │
+│  {                                                              │
+│    "available_capacity": 100000,   // eJLE slots                │
+│    "collateral_type": "stETH",                                  │
+│    "asking_fee": 0.5,              // % annual of minted        │
+│    "min_generator_tier": "Tier1"                                │
+│  }                                                              │
+│                                                                  │
+│  MARKET DYNAMICS:                                               │
+│  ├── High demand → fees rise → attracts more stakers            │
+│  ├── Low demand → fees fall → benefits generators               │
+│  └── Market finds equilibrium naturally                         │
+│                                                                  │
+│  NO GUARANTEED APY — pure supply/demand economics               │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-### 5.5 Unstaking
+### 5.6 Staker Revenue Streams
 
-- **Cooldown Period**: 14 days
-- **Early Exit Penalty**: 5% if unstaking before cooldown
-- **Partial Unstaking**: Allowed if remaining stake covers sponsored slots
+Stakers earn from multiple sources:
+
+| Source | Type | Description |
+|--------|------|-------------|
+| **Underlying Yield** | Guaranteed | stETH/rETH yield (~3-4% APY) |
+| **Protocol Fees** | Variable | 70% of 0.1% transaction fees |
+| **Sponsorship Fees** | Variable | Market-rate fee from generators |
+| **Governance Power** | Non-monetary | Vote on protocol decisions |
+
+**Example Returns:**
+
+```
+Staker deposits: 100 stETH ($300,000)
+Receives: stJLE tokens
+Backs: 3,000,000 eJLE minting capacity
+Utilized: 2,000,000 eJLE (generators minted)
+
+ANNUAL RETURNS:
+
+1. Underlying Yield (stETH):
+   ~4% × $300,000 = $12,000/year
+
+2. Protocol Fee Share:
+   At moderate volume: ~1-2% = $3,000-6,000/year
+
+3. Sponsorship Fees:
+   At 0.5% market rate on 2M eJLE: ~$1,000/year
+
+TOTAL RANGE:
+├── Bear case: 4% + 0.5% + 0.3% = ~4.8% APY
+├── Base case: 4% + 1.5% + 0.5% = ~6% APY
+└── Bull case: 4% + 3% + 1% = ~8% APY
+
++ stJLE is liquid and can be used in DeFi
+```
+
+### 5.7 Unstaking Mechanism
+
+**Option 1: Sell stJLE (Instant)**
+
+stJLE is liquid and tradeable. Selling transfers all rights AND obligations to the buyer:
+
+- Exit is instant via DEX
+- No restrictions or waiting periods
+- Sponsorship liability transfers with the token
+
+**Option 2: Redeem Collateral**
+
+Burn stJLE to withdraw underlying collateral:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│            REDEMPTION CONDITIONS                                 │
+│                                                                  │
+│  IF no outstanding sponsorship (no eJLE minted):                │
+│  └── Instant redemption, no restrictions                        │
+│                                                                  │
+│  IF outstanding sponsorship (generators minted eJLE):           │
+│  ├── A) Buy & burn eJLE to clear liability → then redeem        │
+│  ├── B) Transfer sponsorship to another staker → then redeem    │
+│  └── C) Wait for generators to burn → gradual release           │
+│                                                                  │
+│  PARTIAL REDEMPTION:                                            │
+│  Can redeem unused capacity anytime                             │
+│  (capacity not allocated to generators)                         │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 5.8 Governance Rights
+
+stJLE holders have voting power in the DAO:
+
+| Requirement | Value |
+|-------------|-------|
+| Minimum to vote | 1,000 eJLE worth of stJLE |
+| Voting power | Proportional to stJLE holdings |
+| Delegation | Can delegate to another address |
+
+**Governance controls:**
+- Protocol parameters (fees, caps)
+- Accepted collateral types
+- Contract upgrades
+- Treasury allocation
+- Validator approval
+
+**Non-participation slashing:** If quorum (40%) is not reached within 14 days, non-voters are slashed 5% of their stake. This incentivizes active governance participation.
 
 ---
 
@@ -654,20 +793,28 @@ Escrow Types:
 │                    CONTRACT ARCHITECTURE                         │
 │                                                                  │
 │  ┌─────────────────┐     ┌─────────────────┐                   │
-│  │  eJouleBond.sol │◄───►│  StakingPool.sol│                   │
-│  │    (ERC-20)     │     │  (Collateral)   │                   │
+│  │  eJouleBond.sol │◄───►│    stJLE.sol    │                   │
+│  │    (ERC-20)     │     │ (Liquid Staking)│                   │
 │  └────────┬────────┘     └────────┬────────┘                   │
 │           │                       │                             │
-│           ▼                       ▼                             │
+│           │              ┌────────┴────────┐                   │
+│           │              │                 │                   │
+│           ▼              ▼                 ▼                   │
+│  ┌─────────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │GeneratorRegistry│  │CollateralVault│  │Sponsorship │        │
+│  │   (Capacity)    │  │(Yield-bearing)│  │  Market    │        │
+│  └────────┬────────┘  └─────────────┘  └─────────────┘        │
+│           │                                                    │
+│           ▼                                                    │
 │  ┌─────────────────┐     ┌─────────────────┐                   │
-│  │GeneratorRegistry│     │ValidatorConsensus│                   │
-│  │   (Capacity)    │     │    (Oracle)      │                   │
-│  └────────┬────────┘     └────────┬────────┘                   │
-│           │                       │                             │
-│           ▼                       ▼                             │
+│  │IdentityValidator│     │ValidatorConsensus│                   │
+│  │  (Anti-Sybil)   │     │    (Oracle)      │                   │
+│  └─────────────────┘     └────────┬────────┘                   │
+│                                   │                             │
+│                                   ▼                             │
 │  ┌─────────────────┐     ┌─────────────────┐                   │
-│  │IdentityValidator│     │  Arbitration.sol│                   │
-│  │  (Anti-Sybil)   │     │   (Disputes)    │                   │
+│  │  Governance.sol │     │  Arbitration.sol│                   │
+│  │     (DAO)       │     │   (Disputes)    │                   │
 │  └─────────────────┘     └─────────────────┘                   │
 │                                   │                             │
 │                                   ▼                             │
@@ -684,7 +831,9 @@ Escrow Types:
 | Contract | Purpose |
 |----------|---------|
 | `eJouleBond.sol` | ERC-20 token with mint/burn logic, 0.1% fee |
-| `StakingPool.sol` | Collateral management, sponsorship, rewards |
+| `stJLE.sol` | Liquid staking token (ERC-20), represents staked position |
+| `CollateralVault.sol` | Holds yield-bearing collateral (stETH, rETH, sDAI), harvests yield |
+| `SponsorshipMarket.sol` | Marketplace for sponsorship listings, market-driven fees |
 | `GeneratorRegistry.sol` | Capacity validation, generator management |
 | `IdentityValidator.sol` | BrightID integration, anti-Sybil, KYB |
 | `ValidatorConsensus.sol` | Oracle network, 3/5 multisig |
@@ -693,7 +842,27 @@ Escrow Types:
 | `Governance.sol` | DAO voting, proposals, timelock |
 | `Treasury.sol` | Fund management, grants |
 
-### 11.3 Upgrade Pattern
+### 11.3 Liquid Staking Contracts
+
+**stJLE.sol** — ERC-20 liquid staking token:
+- `mint()` — issued when collateral deposited
+- `burn()` — redeemed for collateral (subject to sponsorship obligations)
+- `transfer()` — transfers rights AND sponsorship liabilities
+- Exchange rate accrues protocol fees over time
+
+**CollateralVault.sol** — Multi-asset collateral management:
+- `deposit(asset, amount)` — accept whitelisted collateral
+- `withdraw(asset, amount)` — return collateral on stJLE redemption
+- `harvestYield()` — collect underlying yield (stETH, rETH, etc.)
+- `whitelistedAssets[]` — DAO-approved collateral types
+
+**SponsorshipMarket.sol** — Market-driven sponsorship:
+- `createListing(capacity, fee, requirements)` — staker offers slots
+- `acceptListing(listingId)` — generator takes sponsorship
+- `transferSponsorship(from, to)` — when stJLE sold
+- No fixed fees — pure supply/demand pricing
+
+### 11.4 Upgrade Pattern
 
 All contracts use **UUPS (Universal Upgradeable Proxy Standard)**:
 
@@ -701,7 +870,7 @@ All contracts use **UUPS (Universal Upgradeable Proxy Standard)**:
 - 7-day timelock before implementation
 - Emergency pause available (75% vote, no timelock)
 
-### 11.4 Access Control
+### 11.5 Access Control
 
 ```
 Roles:

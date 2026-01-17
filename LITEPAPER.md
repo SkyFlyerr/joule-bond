@@ -215,77 +215,117 @@ Price in USD = market rate (target anchor ~$0.10)
 
 ## Collateral & Staking Model
 
-eJLE is **100% collateral-backed**. Every token in circulation is backed by staked crypto assets.
+eJLE is **100% collateral-backed**. Every token in circulation is backed by staked crypto assets. The protocol accepts **yield-bearing collateral** and issues **liquid staking tokens** (stJLE).
 
-### How It Works
+### Yield-Bearing Collateral
+
+Stakers deposit yield-bearing assets to maximize returns:
+
+| Asset | Type | Underlying Yield |
+|-------|------|------------------|
+| stETH | Lido Staked ETH | ~3-4% APY |
+| rETH | Rocket Pool ETH | ~3-4% APY |
+| sDAI | Spark DAI | ~5-8% APY |
+| ETH/MATIC/USDC | Native | No underlying yield |
+
+### Liquid Staking: stJLE Token
+
+When you stake collateral, you receive **stJLE** — a fully liquid receipt token:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  stJLE — LIQUID STAKING TOKEN                               │
+│                                                             │
+│  DEPOSIT: 10 stETH → receive stJLE tokens                   │
+│                                                             │
+│  stJLE REPRESENTS:                                          │
+│  ├── Claim on underlying collateral                         │
+│  ├── Accumulated protocol fees                              │
+│  ├── Governance voting power                                │
+│  └── Sponsorship capacity for generators                    │
+│                                                             │
+│  LIQUIDITY:                                                 │
+│  ├── Tradeable on DEX (exit anytime)                        │
+│  ├── Usable in DeFi (Aave, Compound, etc.)                  │
+│  └── Transfer includes all rights AND obligations           │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Sponsored Minting
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  SPONSORED MINTING MODEL                                    │
 │                                                             │
-│  STAKER (has capital):                                     │
-│  ├── Stakes ETH/MATIC/USDC as collateral                   │
-│  ├── Opens minting slots for newcomers                     │
-│  └── Earns 0.1% from all sponsored transactions            │
+│  STAKER (has capital):                                      │
+│  ├── Deposits yield-bearing collateral (stETH, rETH, etc.)  │
+│  ├── Receives stJLE tokens (liquid, tradeable)              │
+│  ├── Opens minting slots for generators                     │
+│  ├── Sets sponsorship fee (market-driven)                   │
+│  └── Earns: underlying yield + fees + sponsorship income    │
 │                                                             │
-│  NEWCOMER (from waitlist):                                 │
-│  ├── Completes BrightID verification                       │
-│  ├── Joins waitlist                                        │
-│  ├── Gets sponsored by a staker                            │
-│  └── Receives minting rights without own collateral        │
+│  GENERATOR (needs minting capacity):                        │
+│  ├── Completes BrightID/KYB verification                    │
+│  ├── Finds sponsor on Sponsorship Marketplace               │
+│  ├── Pays market-rate sponsorship fee                       │
+│  └── Receives minting rights backed by sponsor              │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Staking Mechanics
+### Staker Revenue Streams
 
-| Stake Amount | Opens Slots For | Collateral Ratio |
-|--------------|-----------------|------------------|
-| $1,000 | 10,000 eJLE | 100% |
-| $10,000 | 100,000 eJLE | 100% |
-| $100,000 | 1,000,000 eJLE | 100% |
-
-**Staker rewards:**
-- **0.1% transaction fee** on all eJLE transactions
-- Distributed proportionally to stake amount
-- Passive income from sponsored participants' activity
-
-### Transaction Fees
-
-```
-Every eJLE transaction:
-├── 0.1% fee deducted
-└── Distributed to staking pool
-
-Example:
-Transaction: 10,000 eJLE
-Fee: 10 eJLE (0.1%)
-Goes to: Staking Reward Pool
-```
+| Source | Type | Description |
+|--------|------|-------------|
+| **Underlying Yield** | Guaranteed | stETH/rETH ~3-4% APY |
+| **Protocol Fees** | Variable | 70% of 0.1% tx fees |
+| **Sponsorship Fees** | Variable | Market-rate from generators |
+| **Governance** | Non-monetary | Vote on protocol decisions |
 
 ### Staker Returns (Example)
 
 ```
-Total Staking Pool: $10,000,000 TVL
-Your Stake: $10,000 (0.1% of pool)
+Staker deposits: 100 stETH ($300,000)
+Receives: stJLE tokens (liquid)
+Backs: 3,000,000 eJLE minting capacity
 
-Daily Network Volume: 10,000,000 eJLE
-Daily Fees: 10,000 eJLE (0.1%)
-Your Daily Reward: 10 eJLE (~$1)
+ANNUAL RETURNS:
 
-Monthly: ~300 eJLE (~$30)
-Yearly: ~3,650 eJLE (~$365)
-APY: ~3.65% (depends on network activity)
+1. Underlying Yield (stETH): ~4% = $12,000
+2. Protocol Fee Share: ~1-2% = $3,000-6,000
+3. Sponsorship Fees: ~0.3-1% = $1,000-3,000
+
+TOTAL RANGE:
+├── Bear case: ~4.8% APY
+├── Base case: ~6% APY
+└── Bull case: ~8% APY
+
+No guaranteed APY — pure market dynamics
++ stJLE is liquid (sell anytime on DEX)
 ```
+
+### Unstaking Options
+
+| Option | Mechanism | Speed |
+|--------|-----------|-------|
+| **Sell stJLE** | Trade on DEX | Instant |
+| **Redeem** | Burn stJLE for collateral | Subject to obligations |
+
+To redeem collateral with outstanding sponsorship, staker must:
+- Buy & burn eJLE to clear liability, OR
+- Transfer sponsorship to another staker, OR
+- Wait for generators to burn tokens
 
 ### Why This Works
 
 | Problem | Solution |
 |---------|----------|
-| Token dumping | 100% collateral backing |
-| Barrier to entry | Sponsors enable free entry |
-| Staker motivation | Transaction fee rewards |
-| Price stability | Real asset backing |
+| Low staking yield | Yield-bearing collateral (stETH ~4%) |
+| Locked capital | stJLE is liquid (tradeable, DeFi-usable) |
+| Fixed rewards | Market-driven sponsorship fees |
+| Exit friction | Sell stJLE instantly on DEX |
+| Governance apathy | Non-participation slashing (5%) |
 
 ## Waitlist & Sponsorship
 
