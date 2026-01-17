@@ -25,7 +25,7 @@
 **Joule Bond (eJLE)** is a Real World Asset (RWA) token where each unit is hard-pegged to **1 kWh** of verified energy generation — whether from a nuclear plant, a solar panel, or human labor.
 
 ```
-1 eJLE = 1 kWh = $0.10 USD (fixed peg)
+1 eJLE = 1 kWh (market price, anchor ~$0.10)
 ```
 
 eJLE creates a **universal unit of account** for all forms of energy and work, enabling a fully decentralized marketplace where anyone can mint, trade, and redeem tokens backed by their validated productive capacity.
@@ -81,7 +81,7 @@ eJLE creates a **universal unit of account** for all forms of energy and work, e
 
 | Feature | Description |
 |---------|-------------|
-| 💵 **Stablecoin** | Fixed peg: 1 eJLE = 1 kWh = $0.10 |
+| 💵 **Market-Driven** | 1 eJLE = 1 kWh, price via DEX |
 | ⚡ **Energy-Backed** | Real energy generation as collateral |
 | 🔄 **Burn-to-Mint** | Must burn to unlock new minting |
 | 🌍 **Universal** | Any entity: plants, companies, individuals |

@@ -155,15 +155,22 @@ eJLE enables a **self-contained economy** where all goods and services are price
 | **Consumer** | Buy eJLE → Spend → Receive | Universal payment method |
 | **Holder** | Buy → Hold | Store of value (energy never loses utility) |
 
-## Price Peg
+## Price Discovery
 
-eJLE is an **energy stablecoin** with a fixed peg:
+eJLE price is **market-driven**, determined by supply and demand on DEX/CEX:
 
 ```
-1 eJLE = 1 kWh = $0.10 USD (fixed)
+1 eJLE = 1 kWh (physical unit, always)
+Price in USD = market rate (target anchor ~$0.10)
 ```
 
-This creates a stable, predictable unit of account for the global energy economy.
+**Why market-driven:**
+- Reflects real energy demand
+- Natural arbitrage with physical energy prices
+- No central authority setting price
+- True price discovery
+
+**Anchor mechanism:** Since eJLE is redeemable for real energy/goods, price naturally gravitates toward average global energy cost (~$0.10/kWh).
 
 ## Individual Bootstrap Program
 
