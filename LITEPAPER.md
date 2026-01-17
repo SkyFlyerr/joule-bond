@@ -155,6 +155,49 @@ eJLE enables a **self-contained economy** where all goods and services are price
 | **Consumer** | Buy eJLE → Spend → Receive | Universal payment method |
 | **Holder** | Buy → Hold | Store of value (energy never loses utility) |
 
+## Individual Bootstrap Program
+
+**For individuals and sole proprietors only.**
+
+New participants can mint a base amount to enter the ecosystem without prior capacity validation:
+
+| Parameter | Value |
+|-----------|-------|
+| **Base Mint** | 10,000 eJLE (10 MWh) |
+| **USD Equivalent** | ~$1,000 (at $0.10/kWh) |
+| **Requirement** | Validated national ID (pseudonymous) |
+| **Limit** | One-time per person, globally |
+
+**How it works:**
+```
+1. VALIDATE IDENTITY → National ID verified (kept private)
+       ↓
+2. RECEIVE BASE MINT → 10,000 eJLE to start
+       ↓
+3. LIST SERVICES → Price your work in kWh
+       ↓
+4. EARN & BURN → Get paid, deliver services
+       ↓
+5. REVALIDATE → Prove actual capacity, unlock standard minting
+```
+
+### Identity Validation Requirements
+
+To prevent fraud and Sybil attacks, identity validators must enforce:
+
+| Requirement | Description |
+|-------------|-------------|
+| **No Duplicates** | One national ID = one account, strictly enforced |
+| **Cross-Jurisdiction Check** | Verify person hasn't registered in another country |
+| **Liveness Verification** | Proof of life (biometric or video verification) |
+| **Pseudonymous Storage** | ID verified but not stored on-chain |
+
+**Validator responsibilities:**
+- Maintain global registry of verified identities (hashed)
+- Cross-reference across all participating jurisdictions
+- Flag suspicious patterns (same biometrics, linked addresses)
+- Regular audits for duplicate detection
+
 ## Privacy & Verification
 
 ### Default: Pseudonymous
@@ -233,9 +276,10 @@ JP:1234567890123   # Japan, Corporate Number
 |----------|----------|
 | `eJouleBond.sol` | Core token (mint, burn, transfer) |
 | `GeneratorRegistry.sol` | Capacity validation for any generator type |
+| `IdentityValidator.sol` | Individual bootstrap, anti-Sybil, cross-jurisdiction |
 | `SupplierBurn.sol` | Redemption & burn logic |
 | `ValidatorConsensus.sol` | Revalidation scheduling |
-| `KYBAttestation.sol` | Optional identity verification |
+| `KYBAttestation.sol` | Optional business identity verification |
 | `Marketplace.sol` | Listings, orders, escrow |
 
 ## Security & Compliance

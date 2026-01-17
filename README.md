@@ -83,7 +83,8 @@ eJLE creates a **universal unit of account** for all forms of energy and work, e
 |---------|-------------|
 | ⚡ **Energy-Backed** | 1:1 peg to verified kWh |
 | 🔄 **Burn-to-Mint** | Must burn to unlock new minting |
-| 🌍 **Universal** | Any generator type: plants, panels, humans |
+| 🌍 **Universal** | Any entity: plants, companies, individuals |
+| 🚀 **Bootstrap** | 10,000 eJLE starter for verified individuals |
 | 🛒 **Marketplace** | Decentralized economy in kWh |
 | 🔒 **Privacy** | Pseudonymous by default, optional KYB |
 
@@ -111,9 +112,10 @@ eJLE creates a **universal unit of account** for all forms of energy and work, e
 |----------|---------|
 | `eJouleBond.sol` | Core token (mint, burn, transfer) |
 | `GeneratorRegistry.sol` | Capacity validation |
+| `IdentityValidator.sol` | Individual bootstrap, anti-Sybil |
 | `SupplierBurn.sol` | Redemption logic |
 | `ValidatorConsensus.sol` | Revalidation scheduling |
-| `KYBAttestation.sol` | Optional identity verification |
+| `KYBAttestation.sol` | Business identity verification |
 | `Marketplace.sol` | Listings, orders, escrow |
 
 ## Quick Start
